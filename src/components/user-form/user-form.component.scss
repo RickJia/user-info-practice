@@ -1,0 +1,39 @@
+.flex-row {
+    display: flex;
+    align-items: center;
+}
+
+form {
+    margin-bottom: 15px;
+}
+
+h1 {
+    margin: 0 15px;
+}
+
+.table {
+    margin-left: 15px;
+    width: 500px;
+    margin-bottom: 50px;
+}
+
+.title, .data-row {
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 25%;
+}
+
+.data-row > .cell {
+    border-top: none;
+}
+
+.cell {
+    overflow: hidden;
+    width: 33%;
+    border: 1px solid gray;
+}
+
+.btn {
+    margin: 0 15px;
+}
+

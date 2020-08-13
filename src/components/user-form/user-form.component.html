@@ -1,0 +1,32 @@
+<form [formGroup]="userForm">
+    <div class="container">
+    <div class="flex-row">
+        <h1>Name</h1>
+        <input type="text" formControlName="name">
+    </div>
+    <div class="flex-row">
+        <h1>Birthday</h1>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput [matDatepicker]="picker" formControlName="birthday">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    </div>
+    <button class="btn" (click)="onSubmit()">Add</button>
+</form>
+
+<div class="table">
+    <div class="title">
+        <div class="cell">Name</div>
+        <div class="cell">Birthday</div>
+        <div class="cell">Age</div>
+    </div>
+    <div class="data-row" *ngFor="let user of userData">
+        <div class="cell">{{user.name}}</div>
+        <div class="cell">{{user.birthday | date:'yyyy MM dd'}}</div>
+        <div class="cell">{{user.age}}</div>
+    </div>
+</div>
+
+<button class="btn" (click)="onRedirect()">to Group table</button>

@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="group" *ngFor="let monthGroup of groupByMonths">
+        <div class="month">{{monthGroup.month}}</div>
+        <div class="users" *ngFor="let user of monthGroup.users">
+            <div class="cell">{{user.name}}</div>
+            <div class="cell">{{user.birthday | date:'yyyy MM dd'}}</div>
+            <div class="cell">{{user.age}}</div>
+        </div>
+    </div>
+</div>
