@@ -1,10 +1,3 @@
-import { User } from 'src/components/user-form/user.interface';
-
-export interface BirthdayMonth {
-    month: string,
-    users: User[],
-}
-
 export function getMonths() {
     let months =  [
         {

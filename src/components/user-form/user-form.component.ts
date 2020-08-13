@@ -40,8 +40,11 @@ export class UserFormComponent implements OnInit {
   }
 
   isValid() {
-    const age = this.calcuateAge(this.userForm.get('birthday').value);
-    return age >= 0;    
+    const birthday = this.userForm.get('birthday').value;
+    if (!birthday) {
+      return false;
+    }
+    return this.calcuateAge(birthday) >= 0;    
   }
 
   onSubmit() {
@@ -53,6 +56,7 @@ export class UserFormComponent implements OnInit {
     const age = this.calcuateAge(this.userForm.get('birthday').value);
     const user = {...this.userForm.value, age: age};
     this.userData.push(user);
+    this.userData.sort((a, b) => a.age - b.age);
     this.userListService.put(this.userData);
     this.userForm.reset();
   }
