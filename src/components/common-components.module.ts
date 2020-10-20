@@ -11,11 +11,13 @@ import { BirthdayGroupComponent } from 'src/components/birthday-group/birthday-g
 
 import { ConfigService } from 'src/services/config.service';
 import { UserListService } from 'src/services/user-list.service';
+import { InputPatternDirective } from './input-pattern.directive';
 
 @NgModule({
   declarations: [
     UserFormComponent,
     BirthdayGroupComponent,
+    InputPatternDirective,
   ],
   imports: [
     CommonModule,

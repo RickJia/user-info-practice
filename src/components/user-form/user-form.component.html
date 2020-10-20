@@ -2,7 +2,13 @@
     <div class="container">
     <div class="flex-row">
         <h1>Name</h1>
-        <input type="text" formControlName="name">
+        <input type="text" formControlName="name"
+            appInputPattern
+        >
+        <div *ngIf="userForm.get('name').hasError('id')"
+            class="alert alert-danger">
+                id Error.
+        </div>
     </div>
     <div class="flex-row">
         <h1>Birthday</h1>

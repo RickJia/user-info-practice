@@ -26,6 +26,7 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userForm.valueChanges.subscribe(val => console.log(this.userForm));
   }
 
   calcuateAge(birthday: Date) {
