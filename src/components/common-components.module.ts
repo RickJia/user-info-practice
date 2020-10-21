@@ -12,12 +12,17 @@ import { BirthdayGroupComponent } from 'src/components/birthday-group/birthday-g
 import { ConfigService } from 'src/services/config.service';
 import { UserListService } from 'src/services/user-list.service';
 import { InputPatternDirective } from './input-pattern.directive';
+import { FieldSecurityValidatorPageComponent } from './field-security-validator-page/field-security-validator-page.component';
+import { FieldSecurityValidatorDirective } from './field-security-validator.directive';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 @NgModule({
   declarations: [
     UserFormComponent,
     BirthdayGroupComponent,
     InputPatternDirective,
+    FieldSecurityValidatorDirective,
+    FieldSecurityValidatorPageComponent
   ],
   imports: [
     CommonModule,
@@ -27,10 +32,12 @@ import { InputPatternDirective } from './input-pattern.directive';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    CurrencyMaskModule,
   ],
   exports: [
     UserFormComponent,
     BirthdayGroupComponent,
+    FieldSecurityValidatorPageComponent,
   ],
   providers: [
     ConfigService,
