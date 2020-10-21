@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserFormComponent } from 'src/components/user-form/user-form.component';
-import { BirthdayGroupComponent } from 'src/components/birthday-group/birthday-group.component';
-import { FieldSecurityValidatorPageComponent } from 'src/components/field-security-validator-page/field-security-validator-page.component';
+import { UserFormComponent } from '../components/user-form/user-form.component';
+import { BirthdayGroupComponent } from '../components/birthday-group/birthday-group.component';
+import { FieldSecurityValidatorPageComponent } from '../components/field-security-validator-page/field-security-validator-page.component';
 
 const routes: Routes = [
   {

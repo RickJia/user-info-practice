@@ -7,10 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { UserFormComponent } from './user-form/user-form.component';
-import { BirthdayGroupComponent } from 'src/components/birthday-group/birthday-group.component';
+import { BirthdayGroupComponent } from '../components/birthday-group/birthday-group.component';
 
-import { ConfigService } from 'src/services/config.service';
-import { UserListService } from 'src/services/user-list.service';
+import { ConfigService } from '../services/config.service';
+import { UserListService } from '../services/user-list.service';
 import { InputPatternDirective } from './input-pattern.directive';
 import { FieldSecurityValidatorPageComponent } from './field-security-validator-page/field-security-validator-page.component';
 import { FieldSecurityValidatorDirective } from './field-security-validator.directive';

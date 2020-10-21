@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UserListService } from 'src/services/user-list.service';
+import { UserListService } from '../../services/user-list.service';
 import { User } from '../user-form/user.interface';
 import { getMonths } from '../birthday-group/groupByMonths.interface';
 
