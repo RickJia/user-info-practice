@@ -15,6 +15,7 @@ import { InputPatternDirective } from './input-pattern.directive';
 import { FieldSecurityValidatorPageComponent } from './field-security-validator-page/field-security-validator-page.component';
 import { FieldSecurityValidatorDirective } from './field-security-validator.directive';
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import { FieldValidatorDirective } from './field-validator/field-validator.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
     BirthdayGroupComponent,
     InputPatternDirective,
     FieldSecurityValidatorDirective,
-    FieldSecurityValidatorPageComponent
+    FieldSecurityValidatorPageComponent,
+    FieldValidatorDirective
   ],
   imports: [
     CommonModule,
