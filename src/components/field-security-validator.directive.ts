@@ -1,6 +1,7 @@
 import { Directive, ElementRef, Host, HostListener, Input, OnInit, Optional, Renderer2 } from '@angular/core';
 import { NgControl, ValidationErrors } from '@angular/forms';
 import { CurrencyMaskDirective } from 'ng2-currency-mask';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 const SPECIAL_CHAR = `[><'"\(\)%\/\\\\\.]`; // 所有欄位預設值. 過濾掉指定的特殊符號(>, <, ', ", (, ), %, /, \, .)，若輸入半形小數點則 轉換為全形點: .
 const LETTER_AND_NUM = `[A-Za-z\\d]`; // 字母跟數字
@@ -140,6 +141,7 @@ export class FieldSecurityValidatorDirective implements OnInit {
     this.initFieldValue = this.ngControl.control.value as string;
     this.foundPattern = this.getPattern(this.patternKey);
     this.bindtAttributeOnElement(this.foundPattern.key);
+    this.onFieldValidationProcess();
   }
 
   bindtAttributeOnElement(key: string): void {
@@ -194,8 +196,6 @@ export class FieldSecurityValidatorDirective implements OnInit {
     let fieldValue = this.ngControl.value as string;
     let errors = {};
 
-    console.log(fieldValue);
-  
     if (this.foundPattern.error && !this.foundPattern.regex.test(fieldValue)) {
       errors = {...this.foundPattern.error};
     }
@@ -219,29 +219,71 @@ export class FieldSecurityValidatorDirective implements OnInit {
     return errors;
   }
 
-  @HostListener('keyup') onTyping(): void {
-    if (this.skipKeyupListener()) {
-      return;
-    }
-    let fieldValue = this.ngControl.value as string;
+  // @HostListener('keyup') onTyping(): void {
+  //   if (this.skipKeyupListener()) {
+  //     return;
+  //   }
+  //   let fieldValue = this.ngControl.value as string;
    
-    console.log(fieldValue);
-    if (this.foundPattern.filterRegex) {
-      fieldValue = fieldValue.replace(this.foundPattern.filterRegex, '');
-      if (this.foundPattern.key === 'TEXT') { // 如果 key 是 TEXT 的話, 將半形"."轉換成全行.
-        fieldValue = fieldValue.replace(/[.]/g, '．');
+  //   console.log(fieldValue);
+  //   if (this.foundPattern.filterRegex) {
+  //     fieldValue = fieldValue.replace(this.foundPattern.filterRegex, '');
+  //     if (this.foundPattern.key === 'TEXT') { // 如果 key 是 TEXT 的話, 將半形"."轉換成全行.
+  //       fieldValue = fieldValue.replace(/[.]/g, '．');
+  //     }
+  //     this.ngControl.control.setValue(fieldValue);
+  //   }
+
+  //   this.initFieldValue = fieldValue; // 記憶最後值
+
+  //   const errors = this.getError();
+   
+  //   if (!this.disableError && Object.keys(errors).length > 0) {
+  //     this.ngControl.control.setErrors(errors);
+  //     console.log(errors);
+  //   }
+  // }
+
+  maxLengthTrim(value: string): string {
+    const maxlength = this.el.nativeElement.getAttribute('maxlength');
+    if (value && maxlength) {
+     
+      value = value.substr(0, maxlength);
+      
+    }
+    return value;
+  }
+
+
+  onFieldValidationProcess(): void {
+    this.ngControl.valueChanges.pipe(
+      distinctUntilChanged()
+    ).subscribe(value =>{
+      if (this.skipKeyupListener()) {
+        return;
       }
-      this.ngControl.control.setValue(fieldValue);
-    }
+      let fieldValue = value as string;
 
-    this.initFieldValue = fieldValue; // 記憶最後值
-
-    const errors = this.getError();
-   
-    if (!this.disableError && Object.keys(errors).length > 0) {
-      this.ngControl.control.setErrors(errors);
-      console.log(errors);
-    }
+      fieldValue = this.maxLengthTrim(value);
+     
+      console.log(fieldValue);
+      if (this.foundPattern.filterRegex) {
+        fieldValue = fieldValue.replace(this.foundPattern.filterRegex, '');
+        if (this.foundPattern.key === 'TEXT') { // 如果 key 是 TEXT 的話, 將半形"."轉換成全行.
+          fieldValue = fieldValue.replace(/[.]/g, '．');
+        }
+        this.ngControl.control.setValue(fieldValue);
+      }
+  
+      this.initFieldValue = fieldValue; // 記憶最後值
+  
+      const errors = this.getError();
+     
+      if (!this.disableError && Object.keys(errors).length > 0) {
+        this.ngControl.control.setErrors(errors);
+        console.log(errors);
+      }
+    });
   }
 
 }

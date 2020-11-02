@@ -3,21 +3,21 @@
       <label>
         身分證字號:
         <input type="text" formControlName="id"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'ID'"
         >
       </label>
       <label>
         金額:
         <input type="text" formControlName="currency"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'CURRENCY'"
         >
       </label>
       <label>
         金額與currencyMask:
         <input type="text" formControlName="currencyWithMask"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'CURRENCY_MASK'"
           [maxLength]="5"
           currencyMask
@@ -27,35 +27,36 @@
       <label>
         純數字:
         <input type="text" formControlName="purenum"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'PURE_NUM'"
         >
       </label>
       <label>
         純英文:
         <input type="text" formControlName="letter"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'LETTER'"
+          [maxLength]="3"
         >
       </label>
       <label>
         基本欄位:
         <input type="text" formControlName="text"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'TEXT'"
         >
       </label>
       <label>
         中英文,數字:
         <input type="text" formControlName="chineseLetterNum"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'CHINESS_LETTER_NUM'"
         >
       </label>
       <label>
         中文姓名:
         <input type="text" formControlName="chineseName"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'CHINESE'"
           [maxLength]="50"
         >
@@ -63,28 +64,28 @@
       <label>
           中英文姓名:
         <input type="text" formControlName="chineseAndEnglish"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'CHINESE_AND_LETTER'"
         >
       </label>
       <label>
         Email:
         <input type="text" formControlName="email"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'EMAIL'"
         >
       </label>
       <label>
         密碼:
         <input type="text" formControlName="password"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'PASSWORD'"
         >
       </label>
       <label>
         自定義身分證長度:
         <input type="text" formControlName="selfDefId"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'ID'"
           [maxLength]="12"
           [minlength]="1"
@@ -93,7 +94,7 @@
       <label>
         信用卡卡號:
         <input type="text" formControlName="creditCard"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'PURE_NUM'"
           [maxLength]="16"
           [minLength]="16"
@@ -102,7 +103,7 @@
       <label>
         使用者代號:
         <input type="text" formControlName="account"
-          appFieldValidator
+          appFieldSecurityValidator
           [patternKey]="'LETTER_AND_NUM'"
           [minLength]="6"
           [maxLength]="16"
